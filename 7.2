@@ -1,0 +1,49 @@
+#include <stdio.h>
+
+float quartile(int arr[], int );
+
+int main() 
+{ 
+      int arr[1000], n, i, tmp, j;
+      double Q3;
+      
+      printf("Number of data : ");
+      scanf("%d",&n);   
+
+      for(i=0; i<n;  i++)
+        scanf("%d",&arr[i]);
+//sort
+     for(i=0; i<n; i++) {
+        for(j=0; j<n-i-1; j++) {
+            if(arr[j] > arr[j+1]) {
+                tmp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = tmp;
+            }
+        }
+    }
+    
+    Q3 = quartile(arr,n+1);
+    printf("Q3: %.2f",Q3); 
+
+   return 0;
+
+}
+
+float quartile(int arr[], int x)
+{
+          
+    double Q3 = (3*x)/4.0;
+    int R3 = (3*x)/4;
+    float quart;
+
+    if((Q3-R3) == 0){
+         quart = ( arr[R3-1] );
+         
+    } 
+    else{   
+          quart = arr[R3-1] + (Q3-R3)*((arr[R3]-arr[R3-1]));
+          
+    }
+      return quart;
+}   
