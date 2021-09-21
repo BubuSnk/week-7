@@ -1,0 +1,35 @@
+#include <stdio.h>
+int main() {
+    int i, n, j, tmp, arr[1000];
+    double Q3;
+    int R3;
+    
+    printf("Number of data : ");
+    scanf("%d", &n);
+    for(i=0; i<n; i++) {
+        scanf("%d", &arr[i]);
+    }
+//sort num
+    for(i=0; i<n; i++) {
+        for(j=0; j<n-i-1; j++) {
+            if(arr[j] > arr[j+1]) {
+                tmp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = tmp;
+            }
+        }
+    }
+    n=n+1;
+    Q3 = (3*n)/4.0;
+    R3 = (3*n)/4;
+
+    if((Q3-R3) == 0) {
+        printf("Q3: %d", arr[R3-1]);
+    } else {
+        float q3;
+        q3 = arr[R3-1] + (Q3-R3)*((arr[R3]-arr[R3-1]));
+        printf("Q3: %.2f", q3);
+    }
+
+    return 0;
+}
